@@ -1,18 +1,12 @@
 <?php
 /**
- *
+ * Tests for valid and invalid Boolean values
  */
 
 use Scalar\Boolean;
 
 class BooleanTest extends PHPUnit_Framework_TestCase
 {
-    public function testBooleanDefault()
-    {
-        $boolean = new Boolean;
-        $this->assertFalse($boolean->getValue());
-    }
-    
     /**
      * @dataProvider validBooleanProvider
      */
@@ -21,11 +15,9 @@ class BooleanTest extends PHPUnit_Framework_TestCase
         $bool = new Boolean($valid);
         $this->assertSame($expected, $bool->getValue());
     }
-    
     public function validBooleanProvider()
     {
         return array(
-            array(null, false),
             array(true, true),
             array(false, false),
             array(1, true),
@@ -46,6 +38,7 @@ class BooleanTest extends PHPUnit_Framework_TestCase
     public function invalidBooleanProvider()
     {
         return array(
+            array(null),
             array('true'),
             array('false'),
             array(array(true)),

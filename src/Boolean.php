@@ -1,30 +1,54 @@
 <?php
 /**
- *
+ * A class representing a boolean.
  */
 
 namespace Scalar;
 
 class Boolean
 {
+    /**
+     * @property bool $value
+     */
     private $value = false;
     
-    public function __construct($bool = null)
+    /**
+     * Creates a Boolean instance with a truthy value
+     *
+     * @param mixed $bool An accepted "truthy" value representing a boolean.
+     *    Current accepted non-boolean values are 0, 1, "0", and "1"
+     *
+     * @throws \InvalidArgumentException if the value does not meet the above criteria
+     */
+    public function __construct($bool)
     {
-        if (isset($bool)) {
-            try {
-                $this->value = $this->normalize($bool);
-            } catch (\InvalidArgumentException $e) {
-                throw $e;
-            }
+        try {
+            $this->value = $this->normalize($bool);
+        } catch (\InvalidArgumentException $e) {
+            throw $e;
         }
     }
     
+    /**
+     * Returns the value of the Boolean
+     *
+     * @return bool
+     */
     public function getValue() : bool
     {
         return $this->value;
     }
     
+    /**
+     * Attempts to normalize a truthy value into a boolean
+     *
+     * @param mixed $bool An accepted "truthy" value representing a boolean.
+     *    Current accepted non-boolean values are 0, 1, "0", and "1"
+     *
+     * @throws \InvalidArgumentException if the value does not meet the above criteria
+     *
+     * @return bool
+     */
     private function normalize($bool) : bool
     {
         if (is_bool($bool)) {
