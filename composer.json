@@ -1,0 +1,10 @@
+{
+    "name": "wittenmedia/scalar",
+    "version": "0.0",
+    "require": {
+        "phpunit/phpunit": "5.5.*"
+    },
+    "autoload": {
+        "psr-4": {"Scalar\\": "src/"}
+    }
+}
